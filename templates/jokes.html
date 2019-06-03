@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <style>
+        body {
+            background-image: url("/static/Images/blend.png");
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        </style>
+    </head>
+    <body>
+        <audio autoplay>
+            <source src="{{url_for('static', filename='songs/joke.mp3')}}" type="audio/mpeg">
+        </audio>
+        <h1 style="text-align: center; font-size:55px; text-decoration: underline; color:red;"> WELCOME TO THE ILLOGICALLY FUNNY JOKE STATION </h1>
+        <form style="text-align: left;" action="/home/jokes/random/" class="form-inline">
+            <br> <br> <br>
+            <input type="submit" id="getData" class="btn" value="Random jokes " style="font-size:50px; color:yellow; padding: 50px; background-color:blue;">
+        </form>
+        <form style="text-align: right;" action="/home/jokes/specific/" class="form-inline" method="post">
+            <input type="Text" name="textme" placeholder="Enter your choice" value="{{request.form.textme}}" style="font-size:40px;">
+            <input type="submit" class="btn" value="Specific jokes" style="font-size:50px; color:blue; padding: 50px; background-color:yellow;">
+
+        </form>
+        <br> <br> <br><br><br> <br>
+        <a href='/login/home/' style="text-decoration: none; text-align:center; border:3px solid; padding:16px; color:black; margin:50px">BACK TO HOME</a>
+    </body>
+</html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Display Webcam Stream</title>
+
+        <style>
+            video, canvas {
+                transform: scale(-1, 1); /*For Firefox (& IE) */
+                -webkit-transform: scale(-1, 1); /*for Chrome & Opera (& Safari) */
+                    }
+            body {
+                background-image: url("/static/Images/yellow.jpeg");
+                background-repeat: no-repeat;
+                background-size: cover;
+            }
+            #container {
+                    	margin: 0px auto;
+                    	width: 600px;
+                        height: 497px;
+                    	border: 0px #333 solid;
+                    	position:relative;
+                                }
+            #videoElement {
+            	width: 600px;
+            	height: 497px;
+            	background-color: #666;
+            }
+            #snap {
+                display: inline-block;
+                margin: 10px auto;
+                padding: 10px;
+                font-size: 20px;
+                background-color: cornflowerblue;
+                color:#fff;
+                text-decoration: none;
+
+                }
+            #start {
+                display: inline-block;
+                margin: 10px auto;
+                padding: 10px;
+                font-size: 20px;
+                background-color: cornflowerblue;
+                color:#fff;
+                text-decoration: none;
+
+                }
+        </style>
+    </head>
+
+    <body>
+        <h1 style="text-align:center; color:blue;"> Face Login Terminal </h1>
+        <div id="result" style="text-align:center;"></div>
+        <div id="container">
+            <video id="videoElement" autoplay></video>
+            <br>
+            <br>
+            &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="START WEBCAM" id="start" />
+            <form action="{{url_for('facelogin')}}" method="post" enctype="multipart/form-data">
+               &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type="button" style="align:center;" value="LOGIN" id="snap" />
+            </form>
+        </div>
+
+        <script type="text/javascript">
+            let video = document.getElementById("videoElement");
+            //create a canvas to grab an image for upload
+            let imageCanvas = document.createElement('canvas');
+            let imageCtx = imageCanvas.getContext("2d");
+            //Add file blob to a form and post
+            function postFile(file) {
+                let formdata = new FormData();
+                //var result = document.getElementById('result');
+                formdata.append("image", file);
+                let xhr = new XMLHttpRequest();
+                xhr.open('POST', 'http://127.0.0.1:5000/facelogin/', true);
+                xhr.onload = function () {
+                    if (this.status === 200) {
+                      result.innerHTML = this.responseText;
+                    } else {
+                      result.innerHTML = 'Nothing';
+                    }
+                };
+                xhr.send(formdata);
+                //var track = video.getTracks()[0];
+            }
+
+            //Get the image from the canvas
+            function sendImagefromCanvas() {
+
+                //Make sure the canvas is set to the current video size
+                imageCanvas.width = video.videoWidth;
+                imageCanvas.height = video.videoHeight;
+
+                imageCtx.drawImage(video, 0, 0, video.videoWidth, video.videoHeight);
+
+                //Convert the canvas to blob and post the file
+                imageCanvas.toBlob(postFile, 'image/jpeg');
+            }
+               //Take a picture on click
+            snap.onclick = function() {
+                console.log('click');
+                sendImagefromCanvas();
+                //stream.getTracks().forEach(track => track.stop())
+            };
+
+            start.onclick = function () {
+
+            //Get camera video
+                navigator.mediaDevices.getUserMedia({video: {width: 600, height: 500}, audio: false})
+                .then(stream => {
+                video.srcObject = stream;
+                })
+                .catch(err => {
+                console.log('navigator.getUserMedia error: ', err)
+                });
+
+            };
+
+        </script>
+
+    </body>
+</html>

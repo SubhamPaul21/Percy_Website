@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+    </head>
+    <body bgcolor="#E6E6FA">
+        <h1 style="text-align:center; font-size:60px;"> Wiki Search </h1>
+        <br><br><br><br><br><br><br><br>
+        <form style="text-align: center;" action="/home/wiki/" class="form-inline" method="post">
+            <input type="Text" name="term" placeholder="Enter your term here" value="{{request.form.term}}" style="font-size:40px;">
+            <input type="submit" class="btn" value="Search" style="font-size:50px; color:blue; padding: 40px; background-color:yellow;">
+        </form>
+        <br><br><br><br><br><br><br><br><br><br>
+        <a href="/login/home/" style="text-decoration: none; text-align:center; border:2px solid; padding:16px; color:black;">BACK to Home </a>
+    </body>
+</html>

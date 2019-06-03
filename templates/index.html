@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="author" value="sampad-subham-somjeet">
+        <meta name="keywords" value="machine learning, face detection, face recognition, object detection, object recognition, weather bot">
+        <title>Project</title>
+        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+        <style>
+        body {
+            background-image: url("/static/Images/blue.jpg");
+            background-color: lightblue;
+        }
+
+        </style>
+    </head>
+
+    <body>
+
+        <!-- login and signup -->
+            <div class="header">
+                <p class="head" style="text-align:center; font-size:60px;">Welcome!!! This is your personal bot -</p>
+                <p class="head" style="text-align:center; font-size:70px; color:red;">PERCY</p>
+                <audio autoplay>
+                    <source src="{{url_for('static', filename='songs/hello.mp3')}}" type="audio/mpeg">
+                </audio>
+                <br><br><br><br><br><br>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6" >
+                        <div class="panel-group">
+                          <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <p class="que" style="text-align: center; font-size:30px; color:red;">Are you a new user?</p>
+                            </div>
+                            <div class="panel-footer">
+                                <div class="panel-body">
+                                    <div class="container1" style="text-align:center;">
+                                        <a href="/addnew/" class="btn btn-success">YEAH I'M NEW</a>
+                                    </div>
+                                </div>
+                            </div>
+                          </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="panel-group">
+                          <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <p class="que" style="text-align: center; font-size:30px; color:blue;">Are you an existing user?</p>
+                            </div>
+                            <div class="panel-footer">
+                                <div class="panel-body">
+                                    <div class="container1" style="text-align:center;">
+                                        <a href="/login/" class="btn btn-success">OFC I BELONG HERE</a>
+                                    </div>
+                                </div>
+                            </div>
+                          </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+
+            <div class="footer">
+                <div class="relate">
+                    <br><br><br><br><br><br><br><br><br><br><br>
+                    <div class="col-lg-3"><p class="foot" style="font-size:30px; ">Learn More About Us.....</p></div>
+                    <div class="col-lg-2"><a href="/index/about/" class="btn btn-default btn-m">CLICK HERE</a></div>
+                </div>
+            </div>
+
+    </body>
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Display Webcam Stream</title>
+        <style>
+        #container {
+                    	margin: 0 auto;
+                    	width: 400px;
+                        height: 300px;
+                    	border: 5px #333 solid;
+                    }
+        #videoElement {
+                        width: 400px;
+                        height: 300px;
+                        background-color: #333;
+                        border: 5px solid #ddd;
+                        margin:0 auto;
+            }
+        #imageContainer {
+                        width: 400px;
+                        height: 300px;
+                        margin:0px auto;
+        }
+        .form-group {
+                    	margin: 0px auto;
+                        text-align: center;
+                    	width: 100%;
+                        height: 100px;
+                    }
+        #button {
+                display: inline-block;
+                margin: 5px auto solid;
+                padding: 10px;
+                font-size: 20px;
+                background-color: cornflowerblue;
+                color:#fff;
+                align: center;
+                text-decoration: none;
+        }
+        #txt {
+             width: 300px;
+        }
+
+
+        </style>
+
+    </head>
+
+    <body>
+        <div id="container">
+            <video id="videoElement" autoplay width="640" height="480"></video>
+            <br><br><br><br><br><br>
+            <canvas id="imageContainer"></canvas>
+        </div>
+        <br><br>
+        <div class="form-group" style="align:center">
+            <!--<form action="{{url_for('flogin')}}" method="post"> -->
+            <button id="button" type="submit" align="center" class="button" style="padding:20px; width:180px;">Take Photo</button>
+            <a href="javascript:canvas.toDataURL('image/jpeg');" download="download" >Download as jpeg</a>
+        </div>
+        <script type="text/javascript">
+            var video = document.getElementById("videoElement");
+            var result = document.getElementById("txt");
+            var canvas = document.getElementById("imageContainer");
+            var context = canvas.getContext("2d");
+            var button = document.getElementById("button");
+            console.log(context);
+
+            button.addEventListener("click", ()  => {
+                var cont = canvas.toDataURL("image/png");
+                document.write('<img src="'+cont+'"/>');
+                context.drawImage(video,0,0, canvas.width, canvas.height);
+                $.post("{{url_for('flogin')}}",
+                {
+                    label : "video",
+                    content : cont
+
+                },
+                function(data,status){
+                    result.value = status+":"+data;
+                    alert("Data: " + data + "\nStatus: " + status);
+
+                });
+            });
+
+            navigator.mediaDevices.getUserMedia({audio:false,video:true})
+            .then(function(stream) {
+                    video.srcObject = stream;
+
+                }).catch(function(err) {
+                    console.log("something went wrong!" + err.message);
+                });
+
+
+        </script>
+    </body>
+</html>
+
+<!-- img_name = "image_{}".format(img_counter)
+    cv2.imwrite(img_name,frame)
+    print("{} written".format(img_name))
+    img_counter += 1 -->

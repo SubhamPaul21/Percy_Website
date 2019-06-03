@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+    </head>
+    <body>
+        <h2> Database of registered users </h2>
+        <table border="1">
+            <thead>
+                <td>FirstName</td>
+                <td>LastName</td>
+                <td>UserName</td>
+            </thead>
+
+            {% for row in rows %}
+                <tr>
+                    <td> {{row["firstname"]}} </td>
+                    <td> {{row["lastname"]}} </td>
+                    <td> {{row["username"]}} </td>
+                </tr>
+            {% endfor %}
+        </table>
+        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+        <a href='/index/' style="text-decoration: none; text-align:left; border:1px solid; padding:16px; color:red; margin:50px">BACK TO HOMEPAGE</a>
+    </body>
+</html>

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+    </head>
+    <body style="background-color:powderblue;">
+        <h1 style="text-align:center; color:blue;"> NEWS </h1>
+        {% for cont in context %}
+            <h1><ul><li>{{cont}}</li></ul></h1>
+        {% endfor %}
+        <br><br>
+        <a href="/home/news/" style="text-decoration: none; text-align:center; border:2px solid; padding:16px; color:black;">REFRESH </a>
+        <a href='/login/home/' style="text-decoration: none; text-align:center; border:1px solid; padding:16px; color:blue; margin:50px">BACK </a>
+
+    </body>
+</html>

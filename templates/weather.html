@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title>WEATHER</title>
+        <style>
+        .button5{
+                font-size: 25px;
+                font-family:courier;
+                background:#ffffff;
+                color:#000000;
+                padding: 15px 20px;
+                border: 2px solid #f00000;
+                border-radius: 8px;
+                 }
+        .button5:hover {
+                        background-color:#f00000;/*red*/
+                        color: white;
+                        }
+        input {
+            font-size: 20px;
+              }
+        form {
+            text-align: center;
+            }
+        h1 {
+            font-size: 85px;
+            padding: 100 px;
+            color: blue;
+            text-shadow: 3px 2px red;welcoming
+            text-align: center;
+        }
+        </style>
+    </head>
+    <body style="background-color:powderblue;">
+        <h1> WELCOME TO THE WEATHER BOT </h1>
+        <audio autoplay>
+            <source src="{{url_for('static', filename='songs/welcome_ask.mp3')}}" type="audio/mpeg">
+        </audio>
+        <p style="font-size:50px; text-align: center; color:green;"> Which city do you reside in? </p>
+        <form action="./weather_details/" class="form-inline" method="post">
+            <input style="height:50px;" type="Text" name="cityname" placeholder="Enter your city name" value="{{request.form.cityname}}">
+            <input type="submit" class="button5" value='See Information'>
+
+        </form>
+        <br> <br> <br><br><br><br> <br> <br><br><br><br> <br> <br>
+        <a href='/login/home/' style="text-decoration: none; text-align:center; border:3px solid; padding:16px; color:black; margin:50px">BACK TO HOME</a>
+
+    </body>
+</html>

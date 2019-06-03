@@ -1,0 +1,24 @@
+<!DOCTYPE>
+<html>
+    <head>
+        <title>LOGIN</title>
+    </head>
+    <body bgcolor="#assffd">
+        <h1> <center>PERSONAL BOT LOGIN SYSTEM</center> </h1>
+        <form action="." class="form-inline" method="post">
+            <table bgcolor="yellow" align="center">
+                <tr>
+                    <td> <label>User Name</label> </td>
+                    <td> <input type="Text" class="form-inline" name="username" placeholder="username" value="{{request.form.username}}"> </td>
+                </tr>
+                <tr>
+                    <td> <label>Password</label> </td>
+                    <td> <input type="password" class="form-inline" name="password" placeholder="password" value="{{request.form.password}}"> </td>
+                </tr>
+                <tr>
+                    <td> <input type="submit" value="Sign In"> </td>
+                </tr>
+            </table>
+        </form>
+    </body>
+</html>

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Register a face</title>
+    <script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
+</head>
+<style>
+    /* mirror the image */
+    video, canvas {
+        transform: scale(-1, 1); /*For Firefox (& IE) */
+        -webkit-transform: scale(-1, 1); /*for Chrome & Opera (& Safari) */
+                }
+    #snap {
+     display: inline-block;
+     margin: 10px auto solid;
+     padding: 10px;
+     font-size: 20px;
+     background-color: cornflowerblue;
+     color:#fff;
+     text-decoration: none;
+
+    }
+    #container {
+        border-style:inset;
+        padding: 10px;
+        border-color: red;
+        border-radius: 20px;
+        border-width:medium;
+        text-align: center;
+        position:relative;
+            }
+    body {
+        background-image: url("/static/Images/simple.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+            }
+</style>
+<body >
+    <h1 style="text-align:center; font-size:50px; color:silver;"> Face Registration System</h1>
+    <p style="text-align:center; font-size:25px;"> Please register by entering your username and clicking the below button </p>
+    <div id="result" style="text-align:center;"></div>
+    <div id="container">
+        <video id="myVideo" autoplay></video>
+        <br>
+        <form action="{{url_for('flogin')}}" method="post" enctype="multipart/form-data">
+      <label style="padding:10px;font-size:25px; ">Enter UserName:          <input type="text" id="name" required style="padding:10px; width:200px; font-size:20px; " ></label>
+      <button type="button" id="snap" >Capture</button>
+      <a href='/index/' style="text-decoration: none; align:right; border:2px solid; padding:5px; color:black; margin:20px">BACK TO HOME</a>
+      <!--<div id="result"></div> -->
+        </form>
+
+        <!--<form id="userr" action="http://localhost:5000/flogin/" method="post">
+        <input placeholder="Enter Username" type="text" id="name" name="facename" style="padding:10px; width:200px; font-size:20px; "/>
+        <!<input type="submit" value="Register UserName" />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <button id="snap" type="submit" href="#" onclick="postUsername();">Take Snaps</button> -->
+    </div>
+
+<script type="text/javascript">
+
+    let v = document.getElementById("myVideo");
+    let button = document.getElementById("button");
+    //create a canvas to grab an image for upload
+    let imageCanvas = document.createElement('canvas');
+    let imageCtx = imageCanvas.getContext("2d");
+    //Add file blob to a form and post
+    function postFile(file) {
+        let formdata = new FormData();
+        //var result = document.getElementById('result');
+        //let username = new FormData();
+        var x = document.getElementById('name').value;
+        formdata.append('name', x);
+        formdata.append("image", file);
+        //formdata.append("name", result.value);
+        let xhr = new XMLHttpRequest();
+        xhr.open('POST', 'http://127.0.0.1:5000/faceregister/', true);
+        xhr.onload = function () {
+            if (this.status === 200) {
+              result.innerHTML = this.responseText;
+            } else {
+              result.innerHTML = 'Nothing';
+            }
+        };
+        xhr.send(formdata);
+    }
+
+    //Get the image from the canvas
+    function sendImagefromCanvas() {
+
+        //Make sure the canvas is set to the current video size
+        imageCanvas.width = v.videoWidth;
+        imageCanvas.height = v.videoHeight;
+
+        imageCtx.drawImage(v, 0, 0, v.videoWidth, v.videoHeight);
+
+        //Convert the canvas to blob and post the file
+        imageCanvas.toBlob(postFile, 'image/jpeg');
+    }
+
+
+    /*function do_ajax() {
+        var req = new XMLHttpRequest();
+        var result = document.getElementById('result');
+        req.open('POST', 'http://localhost:5000/flogin/', true);
+        req.setRequestHeader('content-type', 'application/x-www-form-urlencoded;charset=UTF-8');
+        req.onload = function () {
+            if (this.status === 200)
+                console.log(this.response);
+            else
+                console.error(req);
+        };
+        /*req.onreadystatechange = function()
+        {
+          if(this.readyState == 4 && this.status == 200) {
+            result.innerHTML = this.responseText;
+          } else {
+            result.innerHTML = "処理中...";
+          }
+      }
+        req.send("name=" + document.getElementById('name').value);
+    }*/
+
+        //Take a picture on click
+    snap.onclick = function() {
+            //var i;
+        //    for ( i=0; i<50; i++) {
+            console.log('click');
+    //    postUsername();
+            //do_ajax().done( () => {
+            sendImagefromCanvas();
+            //});
+            //sendImagefromCanvas();
+            //sendImagefromCanvas();
+        };
+
+    window.onload = function () {
+
+        //Get camera video
+        navigator.mediaDevices.getUserMedia({video: {width: 720, height: 480}, audio: false})
+            .then(stream => {
+                v.srcObject = stream;
+            })
+            .catch(err => {
+                console.log('navigator.getUserMedia error: ', err)
+            });
+
+    };
+
+</script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title>DETAILS</title>
+        <style>
+        h2 {
+            text-align: center;
+        }
+        </style>
+    </head>
+    <body style="background-color:#48D1CC;">
+        <audio autoplay>
+            <source src="{{url_for('static', filename='songs/'+result)}}" type="audio/mpeg">
+        </audio>
+        <ol><h2>Location: {{info['location']}} </h2></ol>
+        <ol><h2>Region: {{info['region']}} </h2></ol>
+        <ol><h2>Weather: {{info['weather']}} </h2></ol>
+        <ol><h2>Latitude: {{info['lat']}} </h2></ol>
+        <ol><h2>Longitude: {{info['lon']}} </h2></ol>
+        <ol><h2>Temperature(Celcius): {{info['temp_c']}} </h2></ol>
+        <ol><h2>Temperature(Farenheit): {{info['temp_f']}} </h2></ol>
+        <ol><h2>Temperature Feels Like(C): {{info['feelslike_c']}} </h2></ol>
+        <ol><h2>Temperature Feels Like(F): {{info['feelslike_f']}} </h2></ol>
+        <ol><h2>Wind Speed(kph): {{info['wind_kph']}} </h2></ol>
+        <ol><h2>Humidity: {{info['humidity']}} </h2></ol>
+        <ol><h2>Day or Night: {{info['is_day']}} </h2></ol>
+        <a href='/home/weather/' style="text-decoration: none; text-align:left; border:1px solid; padding:16px; color:red; margin:50px">BACK </a>
+    </body>
+</html>

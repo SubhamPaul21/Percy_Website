@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="author" value="sampad-subham-somjeet">
+        <meta name="keywords" value="machine learning, face detection, face recognition, object detection, object recognition, weather bot">
+        <title>Home page</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!--<link rel="stylesheet" href="/static/css/fbstyle.css"> -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    </head>
+
+    <body style="text-align:center; background-color: rgba(50, 115, 220, 0.3);">
+
+        <div class="jumbotron">
+            <h2>HOW MAY I HELP YOU? {{name}}</h2>
+        </div>
+
+        <div class="container-fluid" style="padding: 20px; width:700px; height: 500px;">
+          <div class="col" style="background: #f1f1f1; padding: 20px; width:700px;">
+          <div id="img1" class="container-fluid" style="width:600px;">
+          <ul class="nav nav-pills nav-stacked">
+            <li class="active"><a data-toggle="pill" href="#home">HOME</a></li><br>
+            <li><input type="button" style="width:450px;height:40px;font-size:larger;" onClick="parent.location='/home/weather/'" name="#menu1" value='CHECK WEATHER UPDATES'></li><br>
+            <li><input type="button" style="width:450px;height:40px;font-size:larger;" onClick="parent.location='/home/jokes/'" name="#menu2" value='DAD JOKES'></li><br>
+            <li><input type="button" style="width:450px;height:40px;font-size:larger;" onClick="parent.location='/home/news/'" name="#menu3" value='CHECK SOME NEWS'></li><br>
+            <li><input type="button" style="width:450px;height:40px;font-size:larger;" onClick="parent.location='/home/tdlist/'" name="#menu4" value='TO-DO LIST'></li><br>
+            <li><input type="button" style="width:450px;height:40px;font-size:larger;" onClick="parent.location='/home/wiki/'" name="#menu5" value='WIKI SEARCH'></li><br>
+            <li><input type="button" style="width:450px;height:40px;font-size:larger;" onClick="parent.location='/home/movie/'" name="#menu6" value='CHECK MOVIE TRAILERS'></li><br>
+            <li><input type="button" style="width:450px;color:red;height:50px;font-size:20px;" onClick="parent.location='/logout/'" name="#menu7" value='LOGOUT' style="color:red;"></li><br>
+          </ul>
+          </div>
+        </div>
+    </div>
+
+
+    </body>
+
+</html>

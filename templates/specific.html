@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title>SPECIFIC JOKE</title>
+    </head>
+    <body style="background-color:powderblue;">
+         {% for value in result%}
+            <h1><ul>{{ value }}
+            </ul></h1>
+        {% endfor %}
+        <h1><p>{{error}} </p></h1>
+        <a href='/home/jokes/' style="text-decoration: none; text-align:center; border:1px solid; padding:16px; color:red; margin:50px">BACK </a>
+    </body>
+</html>
